@@ -170,6 +170,7 @@ func (h *Handler) executeMapping(m *mappings.Mapping, keyCode uint16) error {
 			h.logger.Warn("unknown passthrough key", "key", m.Passthrough)
 			return nil
 		}
+		h.logger.Debug("passthrough", "from", keyCode, "to", m.Passthrough, "toCode", passthroughCode, "shift", h.keyState.ShiftPressed())
 		if h.keyState.ShiftPressed() {
 			return h.vkb.PassthroughWithShiftRAlt(int(passthroughCode))
 		}

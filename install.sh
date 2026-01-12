@@ -11,6 +11,15 @@ NC='\033[0m' # No Color
 
 echo -e "${GREEN}Installing asahi-map...${NC}"
 
+# Get the actual user (even when running with sudo)
+if [[ -n "$SUDO_USER" ]]; then
+    REAL_USER="$SUDO_USER"
+    REAL_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
+else
+    REAL_USER="$USER"
+    REAL_HOME="$HOME"
+fi
+
 # Check if running as root
 if [[ $EUID -ne 0 ]]; then
    echo -e "${YELLOW}Note: Installation requires root. Re-running with sudo...${NC}"
@@ -34,7 +43,7 @@ echo "Installing configuration files..."
 cp configs/config.yaml /etc/asahi-map/
 cp configs/layouts/*.yaml /etc/asahi-map/layouts/
 
-# Create systemd user service
+# Create systemd user service (without tray, for headless/service mode)
 echo "Creating systemd user service..."
 mkdir -p /usr/lib/systemd/user
 cat > /usr/lib/systemd/user/asahi-map.service << 'EOF'
@@ -44,12 +53,28 @@ After=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/asahi-map
+ExecStart=/usr/local/bin/asahi-map --no-tray
 Restart=on-failure
 RestartSec=5
 
 [Install]
 WantedBy=default.target
+EOF
+
+# Create XDG autostart entry (with tray, for desktop use)
+echo "Creating autostart entry..."
+mkdir -p /etc/xdg/autostart
+cat > /etc/xdg/autostart/asahi-map.desktop << 'EOF'
+[Desktop Entry]
+Type=Application
+Name=Asahi-Map
+Comment=macOS Option key shortcuts for Linux
+Exec=/usr/local/bin/asahi-map
+Icon=input-keyboard
+Terminal=false
+Categories=Utility;
+X-GNOME-Autostart-enabled=true
+X-KDE-autostart-after=panel
 EOF
 
 # Setup udev rule for /dev/uinput access
@@ -67,18 +92,12 @@ echo ""
 echo -e "${GREEN}Installation complete!${NC}"
 echo ""
 echo "Next steps:"
-echo "  1. Add your user to the input group:"
+echo "  1. Add your user to the input group (if not already done):"
 echo "     sudo usermod -aG input \$USER"
 echo ""
-echo "  2. Log out and back in for group changes to take effect"
+echo "  2. Log out and back in for group membership to take effect"
 echo ""
-echo "  3. Copy config to your home directory (optional):"
-echo "     mkdir -p ~/.config/asahi-map/layouts"
-echo "     cp /etc/asahi-map/config.yaml ~/.config/asahi-map/"
-echo "     cp /etc/asahi-map/layouts/*.yaml ~/.config/asahi-map/layouts/"
+echo "  3. Asahi-map will start automatically on next login (with systray)"
 echo ""
-echo "  4. Start the service:"
-echo "     systemctl --user enable --now asahi-map"
-echo ""
-echo "  Or run manually:"
+echo "  Or run manually now (after logout/login):"
 echo "     asahi-map"

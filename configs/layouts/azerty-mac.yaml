@@ -1,294 +1,218 @@
 # AZERTY Mac Layout - French keyboard Option key mappings
-# Touches mappées par leur position physique (keycode evdev)
+# Uses passthrough to AltGr (Right Alt) for maximum compatibility
+# Works on Wayland, X11, all applications including Firefox and terminals
 name: "AZERTY Mac"
 description: "French AZERTY keyboard for Mac - Option key special characters"
 
 # Alt (Option) + key mappings
+# Uses passthrough to send AltGr+key which works everywhere
 alt:
-  # Number row (AZERTY: @ & é " ' ( - è _ ç à ) =)
-  # KEY_GRAVE (41) = @ sur AZERTY Mac
+  # Number row: @ & é " ' ( § è ! ç à ) -
   "grave":
-    codepoint: 0x2022  # • Bullet (Option+@)
+    passthrough: "grave"  # · periodcentered (Option+@)
   "1":
-    codepoint: 0xF8FF  #  Apple logo (Option+&)
+    passthrough: "1"  # dead_acute (Option+&) - no visible output
   "2":
-    codepoint: 0x00EB  # ë e tréma (Option+é)
+    passthrough: "2"  # ë ediaeresis (Option+é)
   "3":
-    codepoint: 0x201C  # “ Left Double Quote (Option+")
+    passthrough: "3"  # " leftdoublequotemark (Option+")
   "4":
-    codepoint: 0x2018  # ‘ Left Single Quote (Option+')
+    passthrough: "4"  # ' leftsinglequotemark (Option+')
   "5":
-    codepoint: 0x007B  # { Left Curly Brace (Option+()
+    passthrough: "5"  # { braceleft (Option+()
   "6":
-    codepoint: 0x00B6  # ¶ Pilcrow (Option+§)
+    passthrough: "6"  # ¶ paragraph (Option+§)
   "7":
-    codepoint: 0x00AB  # « Left Guillemet (Option+è)
+    passthrough: "7"  # « guillemotleft (Option+è)
   "8":
-    codepoint: 0x00A1  # ¡ Inverted Exclamation (Option+!)
+    passthrough: "8"  # ¡ exclamdown (Option+!)
   "9":
-    codepoint: 0x00C7  # Ç C cedilla majuscule (Option+ç)
+    passthrough: "9"  # Ç Ccedilla (Option+ç)
   "0":
-    codepoint: 0x00F8  # ø o barré (Option+à)
+    passthrough: "0"  # ø oslash (Option+à)
   "minus":
-    codepoint: 0x007D  # } Right Curly Brace (Option+))
+    passthrough: "minus"  # } braceright (Option+))
   "equal":
-    codepoint: 0x2014  # — Em Dash (Option+=)
+    passthrough: "equal"  # — emdash (Option+-)
 
-  # Top letter row (AZERTY: A Z E R T Y U I O P ^ $)
+  # Top letter row: A Z E R T Y U I O P ^ $
   "q":
-    codepoint: 0x00E6  # æ Small ae ligature (Option+A)
+    passthrough: "q"  # æ ae (Option+A)
   "w":
-    codepoint: 0x00C2  # Â A circumflex (Option+Z)
+    passthrough: "w"  # Â Acircumflex (Option+Z)
   "e":
-    codepoint: 0x00EA  # ê e circumflex (Option+E)
+    passthrough: "e"  # ê ecircumflex (Option+E)
   "r":
-    codepoint: 0x00AE  # ® Registered (Option+R)
+    passthrough: "r"  # ® registered (Option+R)
   "t":
-    codepoint: 0x2020  # † Dagger (Option+T)
+    passthrough: "t"  # † dagger (Option+T)
   "y":
-    codepoint: 0x00DA  # Ú U acute (Option+Y)
+    passthrough: "y"  # Ú Uacute (Option+Y)
   "u":
-    codepoint: 0x00B0  # ° Degree (Option+U)
+    passthrough: "u"  # º masculine (Option+U)
   "i":
-    codepoint: 0x00EE  # î i circumflex (Option+I)
+    passthrough: "i"  # î icircumflex (Option+I)
   "o":
-    codepoint: 0x0153  # œ oe ligature (Option+O)
+    passthrough: "o"  # œ oe (Option+O)
   "p":
-    codepoint: 0x03C0  # π Pi (Option+P)
+    passthrough: "p"  # π Greek_pi (Option+P)
   "leftbrace":
-    codepoint: 0x00F4  # ô o circumflex (Option+^)
+    passthrough: "leftbrace"  # ô ocircumflex (Option+^)
   "rightbrace":
-    codepoint: 0x20AC  # € Euro (Option+$)
-  "backslash":
-    codepoint: 0x00B6  # ¶ Pilcrow (si présent)
+    passthrough: "rightbrace"  # € EuroSign (Option+$)
 
-  # Home row (AZERTY: Q S D F G H J K L M ù `)
+  # Home row: Q S D F G H J K L M ù `
   "a":
-    codepoint: 0x2021  # ‡ Double Dagger (Option+Q)
+    passthrough: "a"  # â acircumflex (Option+Q)
   "s":
-    codepoint: 0x00D2  # Ò O grave (Option+S)
+    passthrough: "s"  # Ò Ograve (Option+S)
   "d":
-    codepoint: 0x2202  # ∂ Partial Differential (Option+D)
+    passthrough: "d"  # ∂ Greek_delta (Option+D)
   "f":
-    codepoint: 0x0192  # ƒ Function symbol (Option+F)
+    passthrough: "f"  # ƒ U0192 (Option+F)
   "g":
-    codepoint: 0x00A9  # © Copyright (Option+G)
+    passthrough: "g"  # ﬁ UFB01 (Option+G)
   "h":
-    codepoint: 0x00CD  # Í I acute (Option+H)
+    passthrough: "h"  # Ì Igrave (Option+H)
   "j":
-    codepoint: 0x00CE  # Î I circumflex (Option+J)
+    passthrough: "j"  # Ï Idiaeresis (Option+J)
   "k":
-    codepoint: 0x00C8  # È E grave (Option+K)
+    passthrough: "k"  # È Egrave (Option+K)
   "l":
-    codepoint: 0x00AC  # ¬ Not Sign (Option+L)
+    passthrough: "l"  # ¬ notsign (Option+L)
   "semicolon":
-    codepoint: 0x00B5  # µ Micro symbol (Option+M)
+    passthrough: "semicolon"  # µ mu (Option+M)
   "apostrophe":
-    codepoint: 0x00D9  # Ù U grave (Option+ù)
+    passthrough: "apostrophe"  # Ù Ugrave (Option+ù)
 
-  # Bottom row (AZERTY: < W X C V B N , ; : !)
+  # Bottom row: < W X C V B N , ; : !
   "102nd":
-    codepoint: 0x00A3  # £ British Pound (Option+<)
+    passthrough: "102nd"  # (Option+<)
   "z":
-    codepoint: 0x2039  # ‹ Single Left Angle (Option+W)
+    passthrough: "z"  # ‹ singleleftangle (Option+W)
   "x":
-    codepoint: 0x2248  # ≈ Almost Equal To (Option+X)
+    passthrough: "x"  # ≈ approxequal (Option+X)
   "c":
-    codepoint: 0x00A9  # © Copyright (Option+C)
+    passthrough: "c"  # © copyright (Option+C)
   "v":
-    codepoint: 0x25CA  # ◊ Lozenge (Option+V)
+    passthrough: "v"  # ◊ lozenge (Option+V)
   "b":
-    codepoint: 0x00DF  # ß Eszett (Option+B)
+    passthrough: "b"  # ß ssharp (Option+B)
   "n":
-    codepoint: 0x007E  # ~ Tilde (Option+N)
+    passthrough: "n"  # ~ tilde (Option+N)
   "m":
-    codepoint: 0x221E  # ∞ Infinity (Option+,)
+    passthrough: "m"  # ∞ infinity (Option+,)
   "comma":
-    codepoint: 0x2026  # … Ellipsis (Option+;)
+    passthrough: "comma"  # … ellipsis (Option+;)
   "dot":
-    codepoint: 0x00F7  # ÷ Division (Option+:)
+    passthrough: "dot"  # ÷ division (Option+:)
   "slash":
-    codepoint: 0x2260  # ≠ Not Equal (Option+!)
+    passthrough: "slash"  # ≠ notequal (Option+!)
+
+  # Space
+  "space":
+    passthrough: "space"  # non-breaking space
 
 # Shift + Alt (Option) + key mappings
 shift_alt:
   # Number row
   "grave":
-    codepoint: 0x00B0  # ° Degree (Shift+Option+@)
+    passthrough: "grave"  # ÿ ydiaeresis (Shift+Option+@)
   "1":
-    codepoint: 0x00B9  # ¹ Superscript 1 (Shift+Option+1)
+    passthrough: "1"  # ´ dead_acute (Shift+Option+1)
   "2":
-    codepoint: 0x00CB  # Ë E tréma (Shift+Option+2)
+    passthrough: "2"  # É Eacute (Shift+Option+é)
   "3":
-    codepoint: 0x201D  # " Right Double Quote (Shift+Option+3)
+    passthrough: "3"  # " rightdoublequotemark (Shift+Option+")
   "4":
-    codepoint: 0x2019  # ' Right Single Quote (Shift+Option+4)
+    passthrough: "4"  # ' rightsinglequotemark (Shift+Option+')
   "5":
-    codepoint: 0x005B  # [ Left Bracket (Shift+Option+5)
+    passthrough: "5"  # [ bracketleft (Shift+Option+()
   "6":
-    codepoint: 0x00C5  # Å A ring (Shift+Option+6)
+    passthrough: "6"  # å aring (Shift+Option+§)
   "7":
-    codepoint: 0x2022  # • Bullet (Shift+Option+7)
+    passthrough: "7"  # » guillemotright (Shift+Option+è)
   "8":
-    codepoint: 0x00A1  # ¡ Inverted Exclamation (Shift+Option+8)
+    passthrough: "8"  # Û Ucircumflex (Shift+Option+!)
   "9":
-    codepoint: 0x00C7  # Ç C cedilla (Shift+Option+9)
+    passthrough: "9"  # Á Aacute (Shift+Option+ç)
   "0":
-    codepoint: 0x00D8  # Ø O barré (Shift+Option+0)
+    passthrough: "0"  # Ø Oslash (Shift+Option+à)
   "minus":
-    codepoint: 0x005D  # ] Right Bracket (Shift+Option+°)
+    passthrough: "minus"  # ] bracketright (Shift+Option+))
   "equal":
-    codepoint: 0x00B1  # ± Plus Minus (Shift+Option+=)
+    passthrough: "equal"  # – endash (Shift+Option+-)
 
   # Top letter row
   "q":
-    codepoint: 0x00C6  # Æ Capital AE ligature
+    passthrough: "q"  # Æ AE (Shift+Option+A)
   "w":
-    codepoint: 0x00C1  # Á A acute
+    passthrough: "w"  # Å Aring (Shift+Option+Z)
   "e":
-    codepoint: 0x00CA  # Ê E circumflex
+    passthrough: "e"  # Ê Ecircumflex (Shift+Option+E)
   "r":
-    codepoint: 0x2030  # ‰ Per Mille
+    passthrough: "r"  # ¤ currency (Shift+Option+R)
   "t":
-    codepoint: 0x2122  # ™ Trade Mark
+    passthrough: "t"  # ™ trademark (Shift+Option+T)
   "y":
-    codepoint: 0x00DD  # Ý Y acute
+    passthrough: "y"  # Ÿ Ydiaeresis (Shift+Option+Y)
   "u":
-    codepoint: 0x02DA  # ˚ Ring Above
+    passthrough: "u"  # ª ordfeminine (Shift+Option+U)
   "i":
-    codepoint: 0x00CF  # Ï I diaeresis
+    passthrough: "i"  # ï idiaeresis (Shift+Option+I)
   "o":
-    codepoint: 0x0152  # Œ Capital OE ligature
+    passthrough: "o"  # Œ OE (Shift+Option+O)
   "p":
-    codepoint: 0x220F  # ∏ N-Ary Product
+    passthrough: "p"  # Π Greek_PI (Shift+Option+P)
   "leftbrace":
-    codepoint: 0x00D4  # Ô O circumflex
+    passthrough: "leftbrace"  # Ô Ocircumflex (Shift+Option+^)
   "rightbrace":
-    codepoint: 0x20AC  # € Euro (Shift+Option+$)
-  "backslash":
-    codepoint: 0x00B6  # ¶ Pilcrow
+    passthrough: "rightbrace"  # ¥ yen (Shift+Option+$)
 
   # Home row
   "a":
-    codepoint: 0x2030  # ‰ Per Mille
+    passthrough: "a"  # À Agrave (Shift+Option+Q)
   "s":
-    codepoint: 0x00D3  # Ó O acute
+    passthrough: "s"  # (Shift+Option+S)
   "d":
-    codepoint: 0x2206  # ∆ Delta
+    passthrough: "d"  # Δ Greek_DELTA (Shift+Option+D)
   "f":
-    codepoint: 0x00B7  # · Middle Dot
+    passthrough: "f"  # · periodcentered (Shift+Option+F)
   "g":
-    codepoint: 0x00A9  # © Copyright
+    passthrough: "g"  # ﬂ UFB02 (Shift+Option+G)
   "h":
-    codepoint: 0x00CC  # Ì I grave
+    passthrough: "h"  # Î Icircumflex (Shift+Option+H)
   "j":
-    codepoint: 0x00CF  # Ï I diaeresis
+    passthrough: "j"  # Í Iacute (Shift+Option+J)
   "k":
-    codepoint: 0x00CB  # Ë E diaeresis
+    passthrough: "k"  # Ë Ediaeresis (Shift+Option+K)
   "l":
-    codepoint: 0x007C  # | Pipe
+    passthrough: "l"  # | bar (Shift+Option+L)
   "semicolon":
-    codepoint: 0x00D3  # Ó O acute (Shift+Option+M)
+    passthrough: "semicolon"  # Ó Oacute (Shift+Option+M)
   "apostrophe":
-    codepoint: 0x00DB  # Û U circumflex
+    passthrough: "apostrophe"  # ‰ permille (Shift+Option+ù)
 
   # Bottom row
   "102nd":
-    codepoint: 0x2264  # ≤ Less Than or Equal (Shift+Option+<)
+    passthrough: "102nd"  # (Shift+Option+<)
   "z":
-    codepoint: 0x203A  # › Single Right Angle
+    passthrough: "z"  # › singlerightangle (Shift+Option+W)
   "x":
-    codepoint: 0x2044  # ⁄ Fraction Slash
+    passthrough: "x"  # ⁄ fraction (Shift+Option+X)
   "c":
-    codepoint: 0x00A2  # ¢ Cent
+    passthrough: "c"  # ¢ cent (Shift+Option+C)
   "v":
-    codepoint: 0x221A  # √ Square Root
+    passthrough: "v"  # √ radical (Shift+Option+V)
   "b":
-    codepoint: 0x222B  # ∫ Integral
+    passthrough: "b"  # ∫ integral (Shift+Option+B)
   "n":
-    codepoint: 0x0131  # ı Dotless i
+    passthrough: "n"  # ı dotlessi (Shift+Option+N)
   "m":
-    codepoint: 0x00BF  # ¿ Inverted Question
+    passthrough: "m"  # ¿ questiondown (Shift+Option+,)
   "comma":
-    codepoint: 0x2265  # ≥ Greater Than or Equal
+    passthrough: "comma"  # (Shift+Option+;)
   "dot":
-    codepoint: 0x2215  # ∕ Division Slash
+    passthrough: "dot"  # \ backslash (Shift+Option+:)
   "slash":
-    codepoint: 0x00B8  # ¸ Cedilla
-
-# Dead keys for accented character composition
-dead_keys:
-  grave:
-    base: "`"
-    combinations:
-      "a": "à"
-      "e": "è"
-      "i": "ì"
-      "o": "ò"
-      "u": "ù"
-      "A": "À"
-      "E": "È"
-      "I": "Ì"
-      "O": "Ò"
-      "U": "Ù"
-      "space": "`"
-
-  acute:
-    base: "´"
-    combinations:
-      "a": "á"
-      "e": "é"
-      "i": "í"
-      "o": "ó"
-      "u": "ú"
-      "y": "ý"
-      "A": "Á"
-      "E": "É"
-      "I": "Í"
-      "O": "Ó"
-      "U": "Ú"
-      "Y": "Ý"
-      "space": "´"
-
-  umlaut:
-    base: "¨"
-    combinations:
-      "a": "ä"
-      "e": "ë"
-      "i": "ï"
-      "o": "ö"
-      "u": "ü"
-      "y": "ÿ"
-      "A": "Ä"
-      "E": "Ë"
-      "I": "Ï"
-      "O": "Ö"
-      "U": "Ü"
-      "Y": "Ÿ"
-      "space": "¨"
-
-  circumflex:
-    base: "ˆ"
-    combinations:
-      "a": "â"
-      "e": "ê"
-      "i": "î"
-      "o": "ô"
-      "u": "û"
-      "A": "Â"
-      "E": "Ê"
-      "I": "Î"
-      "O": "Ô"
-      "U": "Û"
-      "space": "^"
-
-  tilde:
-    base: "˜"
-    combinations:
-      "a": "ã"
-      "n": "ñ"
-      "o": "õ"
-      "A": "Ã"
-      "N": "Ñ"
-      "O": "Õ"
-      "space": "~"
+    passthrough: "slash"  # ≠ notequal (Shift+Option+!)
