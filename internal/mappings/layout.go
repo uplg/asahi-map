@@ -83,7 +83,6 @@ type KeyLookup struct {
 	activeDeadKey *DeadKey
 }
 
-// NewKeyLookup creates a new key lookup from a layout.
 func NewKeyLookup(layout *Layout) *KeyLookup {
 	kl := &KeyLookup{
 		layout:      layout,

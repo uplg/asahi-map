@@ -9,7 +9,6 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-// Config holds the main application configuration.
 type Config struct {
 	Layout         string `yaml:"layout"`
 	LogLevel       string `yaml:"log_level"`
@@ -17,7 +16,6 @@ type Config struct {
 	ConfigDir      string `yaml:"-"`
 }
 
-// DefaultConfig returns a configuration with sensible defaults.
 func DefaultConfig() *Config {
 	return &Config{
 		Layout:         "azerty-mac",
@@ -82,12 +80,10 @@ func Load(configPath string) (*Config, error) {
 	return cfg, nil
 }
 
-// LayoutPath returns the full path to a layout file.
 func (c *Config) LayoutPath(layoutName string) string {
 	return filepath.Join(c.ConfigDir, "layouts", layoutName+".yaml")
 }
 
-// AvailableLayouts returns a list of available layout names.
 func (c *Config) AvailableLayouts() ([]string, error) {
 	layoutDir := filepath.Join(c.ConfigDir, "layouts")
 	entries, err := os.ReadDir(layoutDir)
@@ -99,18 +95,16 @@ func (c *Config) AvailableLayouts() ([]string, error) {
 	for _, entry := range entries {
 		if !entry.IsDir() && filepath.Ext(entry.Name()) == ".yaml" {
 			name := entry.Name()
-			layouts = append(layouts, name[:len(name)-5]) // Remove .yaml extension
+			layouts = append(layouts, name[:len(name)-5])
 		}
 	}
 
 	return layouts, nil
 }
 
-// Save writes the current configuration to disk.
 func (c *Config) Save() error {
 	configPath := filepath.Join(c.ConfigDir, "config.yaml")
 
-	// Ensure directory exists
 	if err := os.MkdirAll(c.ConfigDir, 0755); err != nil {
 		return fmt.Errorf("creating config directory: %w", err)
 	}

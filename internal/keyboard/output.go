@@ -13,7 +13,6 @@ type VirtualKeyboard struct {
 	logger   *slog.Logger
 }
 
-// NewVirtualKeyboard creates a new virtual keyboard for output.
 func NewVirtualKeyboard(logger *slog.Logger) (*VirtualKeyboard, error) {
 	kb, err := uinput.CreateKeyboard("/dev/uinput", []byte("asahi-map-virtual"))
 	if err != nil {
@@ -51,7 +50,7 @@ func (vk *VirtualKeyboard) TapKey(code int) error {
 
 // TypeUnicode types a Unicode character using the Ctrl+Shift+U method.
 // This works in GTK/Qt applications that support Unicode input.
-// On AZERTY keyboards, digits require Shift to be pressed.
+// On AZERTY macOS keyboards, digits require Shift to be pressed.
 func (vk *VirtualKeyboard) TypeUnicode(r rune) error {
 	hex := fmt.Sprintf("%x", r) // lowercase hex
 

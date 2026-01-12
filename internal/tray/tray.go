@@ -37,7 +37,6 @@ type Config struct {
 	Logger           *slog.Logger
 }
 
-// New creates a new system tray icon.
 func New(cfg Config) *Tray {
 	return &Tray{
 		enabled:          cfg.Enabled,
@@ -162,7 +161,6 @@ func (t *Tray) selectLayout(layout string) {
 	}
 }
 
-// updateTooltip updates the tray tooltip.
 func (t *Tray) updateTooltip() {
 	status := "Enabled"
 	if !t.enabled {
@@ -171,17 +169,14 @@ func (t *Tray) updateTooltip() {
 	systray.SetTooltip("Asahi-Map: " + status + " (" + t.currentLayout + ")")
 }
 
-// onExit is called when systray is exiting.
 func (t *Tray) onExit() {
 	t.logger.Info("tray exiting")
 }
 
-// Quit stops the system tray.
 func (t *Tray) Quit() {
 	systray.Quit()
 }
 
-// SetEnabled sets the enabled state.
 func (t *Tray) SetEnabled(enabled bool) {
 	t.enabled = enabled
 	if t.statusItem != nil {

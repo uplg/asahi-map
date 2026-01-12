@@ -11,11 +11,11 @@ import (
 	"path/filepath"
 	"syscall"
 
-	"github.com/leonard/asahi-map/internal/config"
-	"github.com/leonard/asahi-map/internal/handler"
-	"github.com/leonard/asahi-map/internal/keyboard"
-	"github.com/leonard/asahi-map/internal/mappings"
-	"github.com/leonard/asahi-map/internal/tray"
+	"github.com/uplg/asahi-map/internal/config"
+	"github.com/uplg/asahi-map/internal/handler"
+	"github.com/uplg/asahi-map/internal/keyboard"
+	"github.com/uplg/asahi-map/internal/mappings"
+	"github.com/uplg/asahi-map/internal/tray"
 )
 
 var (

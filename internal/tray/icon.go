@@ -21,5 +21,5 @@ var keyboardIcon = []byte{
 	0x00, 0x49, 0x45, 0x4e, 0x44, 0xae, 0x42, 0x60, 0x82,
 }
 
-// keyboardDisabledIcon uses the same icon (could be grayed out version later)
+// keyboardDisabledIcon uses the same icon (todo: could be grayed out version later)
 var keyboardDisabledIcon = keyboardIcon

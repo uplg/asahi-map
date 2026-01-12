@@ -13,7 +13,6 @@ import (
 	evdev "github.com/holoplot/go-evdev"
 )
 
-// Device represents an input device being monitored.
 type Device struct {
 	path   string
 	device *evdev.InputDevice
@@ -27,7 +26,6 @@ type DeviceManager struct {
 	logger  *slog.Logger
 }
 
-// NewDeviceManager creates a new device manager.
 func NewDeviceManager(logger *slog.Logger) *DeviceManager {
 	return &DeviceManager{
 		devices: make(map[string]*Device),
@@ -88,7 +86,6 @@ func (dm *DeviceManager) FindKeyboards() ([]*Device, error) {
 	return keyboards, nil
 }
 
-// isKeyboard checks if a device is likely a keyboard.
 func (dm *DeviceManager) isKeyboard(dev *evdev.InputDevice) bool {
 	// Check for EV_KEY capability
 	capableTypes := dev.CapableTypes()
@@ -165,12 +162,10 @@ func ReadEvents(ctx context.Context, dev *Device, events chan<- *KeyEvent) error
 	}
 }
 
-// Path returns the device path.
 func (d *Device) Path() string {
 	return d.path
 }
 
-// Name returns the device name.
 func (d *Device) Name() string {
 	return d.name
 }
