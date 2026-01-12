@@ -5,16 +5,15 @@ A lightweight Go application for handling macOS Option key shortcuts on Linux. D
 ## Features
 
 - 🎹 **macOS-style Option key shortcuts** - Type special characters like on macOS
-- 🌍 **Multiple keyboard layouts** - Support for AZERTY, QWERTY, and custom layouts
-- 🖥️ **System tray integration** - Easy access via GTK system tray icon
-- ⚡ **Lightweight** - Written in Go for minimal memory usage
+- 🇫🇷 **AZERTY Mac layout** - Full French keyboard support with Option and Option+Shift mappings
+- 🖥️ **System tray integration** - Status icon and layout switching via fyne.io/systray
+- ⚡ **Lightweight** - Written in Go for minimal memory usage (~5 MB)
 - 🔧 **Configurable** - YAML-based configuration files
-- 🔤 **Dead key support** - For accented characters (é, è, ê, etc.)
+- 🔄 **AltGr passthrough** - Works on Wayland, X11, and all applications
 
 ## Requirements
 
-- Linux with evdev support
-- GTK3 for system tray
+- Linux with evdev support (Asahi Linux / Fedora)
 - Root access or `input` group membership
 
 ## Installation
@@ -22,15 +21,11 @@ A lightweight Go application for handling macOS Option key shortcuts on Linux. D
 ### From source
 
 ```bash
-# Install dependencies (Fedora)
-sudo dnf install gtk3-devel
-
 # Build
 go build -ldflags="-s -w" -o asahi-map ./cmd/asahi-map
 
 # Install
-sudo cp asahi-map /usr/local/bin/
-sudo cp configs/*.yaml /etc/asahi-map/
+sudo ./install.sh
 ```
 
 ### Setup permissions
@@ -45,63 +40,39 @@ sudo usermod -aG input $USER
 ## Usage
 
 ```bash
-# Run with default config
+# Run with system tray (default)
 asahi-map
+
+# Run without system tray
+asahi-map -no-tray
 
 # Run with specific layout
 asahi-map -layout azerty-mac
 
-# Run with custom config directory
-asahi-map -config /path/to/configs
+# Show version
+asahi-map -version
 ```
 
 ## Configuration
 
-Configuration files are in YAML format and located in `~/.config/asahi-map/` or `/etc/asahi-map/`.
+Configuration files are in YAML format and located in `/etc/asahi-map/`.
 
-### Main config (`config.yaml`)
+### Layout file (`layouts/azerty-mac.yaml`)
 
-```yaml
-layout: azerty-mac
-log_level: info
-keyboard_device: auto  # or specific device path
-```
-
-### Layout files (`layouts/azerty-mac.yaml`)
+Mappings use AltGr passthrough for maximum compatibility:
 
 ```yaml
 name: "AZERTY Mac"
 description: "French AZERTY keyboard for Mac"
 
-mappings:
-  # Alt + key -> Unicode character
-  alt:
-    "a": "æ"
-    "z": "Ω"
-    # ...
+alt:
+  "q":  # Option+A (AZERTY)
+    passthrough: "q"  # sends AltGr+Q → æ
   
-  # Shift + Alt + key -> Unicode character  
-  shift_alt:
-    "a": "Æ"
-    # ...
+shift_alt:
+  "q":  # Option+Shift+A
+    passthrough: "q"  # sends AltGr+Shift+Q → Æ
 ```
-
-## Architecture
-
-```
-asahi-map/
-├── cmd/asahi-map/      # Main entry point
-├── internal/
-│   ├── config/         # Configuration loading
-│   ├── keyboard/       # evdev/uinput handling
-│   ├── mappings/       # Key mapping logic
-│   └── tray/           # System tray UI
-└── configs/            # Default layout files
-```
-
-## Memory Usage
-
-Typical memory usage: ~5-10 MB (compared to ~100+ MB for Toshy)
 
 ## License
 
