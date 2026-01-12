@@ -1,0 +1,294 @@
+# AZERTY Mac Layout - French keyboard Option key mappings
+# Touches mappées par leur position physique (keycode evdev)
+name: "AZERTY Mac"
+description: "French AZERTY keyboard for Mac - Option key special characters"
+
+# Alt (Option) + key mappings
+alt:
+  # Number row (AZERTY: @ & é " ' ( - è _ ç à ) =)
+  # KEY_GRAVE (41) = @ sur AZERTY Mac
+  "grave":
+    codepoint: 0x2022  # • Bullet (Option+@)
+  "1":
+    codepoint: 0xF8FF  #  Apple logo (Option+&)
+  "2":
+    codepoint: 0x00EB  # ë e tréma (Option+é)
+  "3":
+    codepoint: 0x201C  # “ Left Double Quote (Option+")
+  "4":
+    codepoint: 0x2018  # ‘ Left Single Quote (Option+')
+  "5":
+    codepoint: 0x007B  # { Left Curly Brace (Option+()
+  "6":
+    codepoint: 0x00B6  # ¶ Pilcrow (Option+§)
+  "7":
+    codepoint: 0x00AB  # « Left Guillemet (Option+è)
+  "8":
+    codepoint: 0x00A1  # ¡ Inverted Exclamation (Option+!)
+  "9":
+    codepoint: 0x00C7  # Ç C cedilla majuscule (Option+ç)
+  "0":
+    codepoint: 0x00F8  # ø o barré (Option+à)
+  "minus":
+    codepoint: 0x007D  # } Right Curly Brace (Option+))
+  "equal":
+    codepoint: 0x2014  # — Em Dash (Option+=)
+
+  # Top letter row (AZERTY: A Z E R T Y U I O P ^ $)
+  "q":
+    codepoint: 0x00E6  # æ Small ae ligature (Option+A)
+  "w":
+    codepoint: 0x00C2  # Â A circumflex (Option+Z)
+  "e":
+    codepoint: 0x00EA  # ê e circumflex (Option+E)
+  "r":
+    codepoint: 0x00AE  # ® Registered (Option+R)
+  "t":
+    codepoint: 0x2020  # † Dagger (Option+T)
+  "y":
+    codepoint: 0x00DA  # Ú U acute (Option+Y)
+  "u":
+    codepoint: 0x00B0  # ° Degree (Option+U)
+  "i":
+    codepoint: 0x00EE  # î i circumflex (Option+I)
+  "o":
+    codepoint: 0x0153  # œ oe ligature (Option+O)
+  "p":
+    codepoint: 0x03C0  # π Pi (Option+P)
+  "leftbrace":
+    codepoint: 0x00F4  # ô o circumflex (Option+^)
+  "rightbrace":
+    codepoint: 0x20AC  # € Euro (Option+$)
+  "backslash":
+    codepoint: 0x00B6  # ¶ Pilcrow (si présent)
+
+  # Home row (AZERTY: Q S D F G H J K L M ù `)
+  "a":
+    codepoint: 0x2021  # ‡ Double Dagger (Option+Q)
+  "s":
+    codepoint: 0x00D2  # Ò O grave (Option+S)
+  "d":
+    codepoint: 0x2202  # ∂ Partial Differential (Option+D)
+  "f":
+    codepoint: 0x0192  # ƒ Function symbol (Option+F)
+  "g":
+    codepoint: 0x00A9  # © Copyright (Option+G)
+  "h":
+    codepoint: 0x00CD  # Í I acute (Option+H)
+  "j":
+    codepoint: 0x00CE  # Î I circumflex (Option+J)
+  "k":
+    codepoint: 0x00C8  # È E grave (Option+K)
+  "l":
+    codepoint: 0x00AC  # ¬ Not Sign (Option+L)
+  "semicolon":
+    codepoint: 0x00B5  # µ Micro symbol (Option+M)
+  "apostrophe":
+    codepoint: 0x00D9  # Ù U grave (Option+ù)
+
+  # Bottom row (AZERTY: < W X C V B N , ; : !)
+  "102nd":
+    codepoint: 0x00A3  # £ British Pound (Option+<)
+  "z":
+    codepoint: 0x2039  # ‹ Single Left Angle (Option+W)
+  "x":
+    codepoint: 0x2248  # ≈ Almost Equal To (Option+X)
+  "c":
+    codepoint: 0x00A9  # © Copyright (Option+C)
+  "v":
+    codepoint: 0x25CA  # ◊ Lozenge (Option+V)
+  "b":
+    codepoint: 0x00DF  # ß Eszett (Option+B)
+  "n":
+    codepoint: 0x007E  # ~ Tilde (Option+N)
+  "m":
+    codepoint: 0x221E  # ∞ Infinity (Option+,)
+  "comma":
+    codepoint: 0x2026  # … Ellipsis (Option+;)
+  "dot":
+    codepoint: 0x00F7  # ÷ Division (Option+:)
+  "slash":
+    codepoint: 0x2260  # ≠ Not Equal (Option+!)
+
+# Shift + Alt (Option) + key mappings
+shift_alt:
+  # Number row
+  "grave":
+    codepoint: 0x00B0  # ° Degree (Shift+Option+@)
+  "1":
+    codepoint: 0x00B9  # ¹ Superscript 1 (Shift+Option+1)
+  "2":
+    codepoint: 0x00CB  # Ë E tréma (Shift+Option+2)
+  "3":
+    codepoint: 0x201D  # " Right Double Quote (Shift+Option+3)
+  "4":
+    codepoint: 0x2019  # ' Right Single Quote (Shift+Option+4)
+  "5":
+    codepoint: 0x005B  # [ Left Bracket (Shift+Option+5)
+  "6":
+    codepoint: 0x00C5  # Å A ring (Shift+Option+6)
+  "7":
+    codepoint: 0x2022  # • Bullet (Shift+Option+7)
+  "8":
+    codepoint: 0x00A1  # ¡ Inverted Exclamation (Shift+Option+8)
+  "9":
+    codepoint: 0x00C7  # Ç C cedilla (Shift+Option+9)
+  "0":
+    codepoint: 0x00D8  # Ø O barré (Shift+Option+0)
+  "minus":
+    codepoint: 0x005D  # ] Right Bracket (Shift+Option+°)
+  "equal":
+    codepoint: 0x00B1  # ± Plus Minus (Shift+Option+=)
+
+  # Top letter row
+  "q":
+    codepoint: 0x00C6  # Æ Capital AE ligature
+  "w":
+    codepoint: 0x00C1  # Á A acute
+  "e":
+    codepoint: 0x00CA  # Ê E circumflex
+  "r":
+    codepoint: 0x2030  # ‰ Per Mille
+  "t":
+    codepoint: 0x2122  # ™ Trade Mark
+  "y":
+    codepoint: 0x00DD  # Ý Y acute
+  "u":
+    codepoint: 0x02DA  # ˚ Ring Above
+  "i":
+    codepoint: 0x00CF  # Ï I diaeresis
+  "o":
+    codepoint: 0x0152  # Œ Capital OE ligature
+  "p":
+    codepoint: 0x220F  # ∏ N-Ary Product
+  "leftbrace":
+    codepoint: 0x00D4  # Ô O circumflex
+  "rightbrace":
+    codepoint: 0x20AC  # € Euro (Shift+Option+$)
+  "backslash":
+    codepoint: 0x00B6  # ¶ Pilcrow
+
+  # Home row
+  "a":
+    codepoint: 0x2030  # ‰ Per Mille
+  "s":
+    codepoint: 0x00D3  # Ó O acute
+  "d":
+    codepoint: 0x2206  # ∆ Delta
+  "f":
+    codepoint: 0x00B7  # · Middle Dot
+  "g":
+    codepoint: 0x00A9  # © Copyright
+  "h":
+    codepoint: 0x00CC  # Ì I grave
+  "j":
+    codepoint: 0x00CF  # Ï I diaeresis
+  "k":
+    codepoint: 0x00CB  # Ë E diaeresis
+  "l":
+    codepoint: 0x007C  # | Pipe
+  "semicolon":
+    codepoint: 0x00D3  # Ó O acute (Shift+Option+M)
+  "apostrophe":
+    codepoint: 0x00DB  # Û U circumflex
+
+  # Bottom row
+  "102nd":
+    codepoint: 0x2264  # ≤ Less Than or Equal (Shift+Option+<)
+  "z":
+    codepoint: 0x203A  # › Single Right Angle
+  "x":
+    codepoint: 0x2044  # ⁄ Fraction Slash
+  "c":
+    codepoint: 0x00A2  # ¢ Cent
+  "v":
+    codepoint: 0x221A  # √ Square Root
+  "b":
+    codepoint: 0x222B  # ∫ Integral
+  "n":
+    codepoint: 0x0131  # ı Dotless i
+  "m":
+    codepoint: 0x00BF  # ¿ Inverted Question
+  "comma":
+    codepoint: 0x2265  # ≥ Greater Than or Equal
+  "dot":
+    codepoint: 0x2215  # ∕ Division Slash
+  "slash":
+    codepoint: 0x00B8  # ¸ Cedilla
+
+# Dead keys for accented character composition
+dead_keys:
+  grave:
+    base: "`"
+    combinations:
+      "a": "à"
+      "e": "è"
+      "i": "ì"
+      "o": "ò"
+      "u": "ù"
+      "A": "À"
+      "E": "È"
+      "I": "Ì"
+      "O": "Ò"
+      "U": "Ù"
+      "space": "`"
+
+  acute:
+    base: "´"
+    combinations:
+      "a": "á"
+      "e": "é"
+      "i": "í"
+      "o": "ó"
+      "u": "ú"
+      "y": "ý"
+      "A": "Á"
+      "E": "É"
+      "I": "Í"
+      "O": "Ó"
+      "U": "Ú"
+      "Y": "Ý"
+      "space": "´"
+
+  umlaut:
+    base: "¨"
+    combinations:
+      "a": "ä"
+      "e": "ë"
+      "i": "ï"
+      "o": "ö"
+      "u": "ü"
+      "y": "ÿ"
+      "A": "Ä"
+      "E": "Ë"
+      "I": "Ï"
+      "O": "Ö"
+      "U": "Ü"
+      "Y": "Ÿ"
+      "space": "¨"
+
+  circumflex:
+    base: "ˆ"
+    combinations:
+      "a": "â"
+      "e": "ê"
+      "i": "î"
+      "o": "ô"
+      "u": "û"
+      "A": "Â"
+      "E": "Ê"
+      "I": "Î"
+      "O": "Ô"
+      "U": "Û"
+      "space": "^"
+
+  tilde:
+    base: "˜"
+    combinations:
+      "a": "ã"
+      "n": "ñ"
+      "o": "õ"
+      "A": "Ã"
+      "N": "Ñ"
+      "O": "Õ"
+      "space": "~"
