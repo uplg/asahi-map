@@ -131,6 +131,7 @@ func (h *Handler) handleEvent(ev *keyboard.KeyEvent) error {
 		if h.lookup.HasActiveDeadKey() {
 			return h.handleDeadKeyCombo(ev)
 		}
+		h.logger.Debug("forwarding non-alt key press", "code", ev.Code, "key", keyName, "shift", h.keyState.ShiftPressed())
 		return h.vkb.ForwardEvent(ev.Code, ev.Value)
 	}
 
@@ -170,9 +171,11 @@ func (h *Handler) executeMapping(m *mappings.Mapping, keyCode uint16) error {
 			h.logger.Warn("unknown passthrough key", "key", m.Passthrough)
 			return nil
 		}
-		h.logger.Debug("passthrough", "from", keyCode, "to", m.Passthrough, "toCode", passthroughCode, "shift", h.keyState.ShiftPressed())
-		if h.keyState.ShiftPressed() {
-			return h.vkb.PassthroughWithShiftRAlt(int(passthroughCode))
+		shiftPressed := h.keyState.ShiftPressed()
+		h.logger.Debug("passthrough", "from", keyCode, "to", m.Passthrough, "toCode", passthroughCode, "shift", shiftPressed)
+		if shiftPressed {
+			// Pass true to indicate Shift was already held by user - don't release it
+			return h.vkb.PassthroughWithShiftRAlt(int(passthroughCode), true)
 		}
 		return h.vkb.PassthroughWithRAlt(int(passthroughCode))
 	}

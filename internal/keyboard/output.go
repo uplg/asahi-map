@@ -171,24 +171,39 @@ func (vk *VirtualKeyboard) PassthroughWithRAlt(keyCode int) error {
 }
 
 // PassthroughWithShiftRAlt sends a key with Shift+Right Alt modifiers.
-func (vk *VirtualKeyboard) PassthroughWithShiftRAlt(keyCode int) error {
-	if err := vk.keyboard.KeyDown(uinput.KeyLeftshift); err != nil {
-		return err
+// shiftAlreadyDown indicates if Shift was already being held by the user.
+// If true, we don't release Shift at the end to maintain the user's Shift state.
+func (vk *VirtualKeyboard) PassthroughWithShiftRAlt(keyCode int, shiftAlreadyDown bool) error {
+	// Only press Shift if it wasn't already down
+	if !shiftAlreadyDown {
+		if err := vk.keyboard.KeyDown(uinput.KeyLeftshift); err != nil {
+			return err
+		}
 	}
 	if err := vk.keyboard.KeyDown(uinput.KeyRightalt); err != nil {
-		vk.keyboard.KeyUp(uinput.KeyLeftshift)
+		if !shiftAlreadyDown {
+			vk.keyboard.KeyUp(uinput.KeyLeftshift)
+		}
 		return err
 	}
 	if err := vk.keyboard.KeyPress(keyCode); err != nil {
 		vk.keyboard.KeyUp(uinput.KeyRightalt)
-		vk.keyboard.KeyUp(uinput.KeyLeftshift)
+		if !shiftAlreadyDown {
+			vk.keyboard.KeyUp(uinput.KeyLeftshift)
+		}
 		return err
 	}
 	if err := vk.keyboard.KeyUp(uinput.KeyRightalt); err != nil {
-		vk.keyboard.KeyUp(uinput.KeyLeftshift)
+		if !shiftAlreadyDown {
+			vk.keyboard.KeyUp(uinput.KeyLeftshift)
+		}
 		return err
 	}
-	return vk.keyboard.KeyUp(uinput.KeyLeftshift)
+	// Only release Shift if we pressed it ourselves
+	if !shiftAlreadyDown {
+		return vk.keyboard.KeyUp(uinput.KeyLeftshift)
+	}
+	return nil
 }
 
 // ForwardEvent forwards an event unchanged.
@@ -198,8 +213,10 @@ func (vk *VirtualKeyboard) ForwardEvent(code uint16, value int32) error {
 		return vk.keyboard.KeyUp(int(code))
 	case 1: // Press
 		return vk.keyboard.KeyDown(int(code))
-	case 2: // Repeat - just do a key press for now
-		return vk.keyboard.KeyPress(int(code))
+	case 2: // Repeat - send another key down (the kernel handles auto-repeat)
+		// Note: We just send KeyDown again, not KeyPress (which would do Down+Up)
+		// The key is already down, so another KeyDown triggers repeat in the kernel
+		return vk.keyboard.KeyDown(int(code))
 	}
 	return nil
 }
