@@ -186,7 +186,9 @@ func main() {
 				h.SetEnabled(enabled)
 			},
 			OnQuit: func() {
+				logger.Info("shutting down...")
 				cancel()
+				os.Exit(0)
 			},
 			Logger: logger,
 		}

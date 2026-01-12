@@ -3,7 +3,6 @@ package tray
 
 import (
 	"log/slog"
-	"time"
 
 	"fyne.io/systray"
 )
@@ -92,34 +91,36 @@ func (t *Tray) onReady() {
 
 // handleClicks processes menu item clicks.
 func (t *Tray) handleClicks(quitItem *systray.MenuItem) {
-	for {
-		select {
-		case <-t.statusItem.ClickedCh:
+	// Handle status toggle
+	go func() {
+		for range t.statusItem.ClickedCh {
 			t.toggleEnabled()
-
-		case <-quitItem.ClickedCh:
-			if t.onQuit != nil {
-				t.onQuit()
-			}
-			systray.Quit()
-			return
-
-		default:
-			// Check layout items
-			for i, item := range t.layoutItems {
-				select {
-				case <-item.ClickedCh:
-					t.selectLayout(t.availableLayouts[i])
-				default:
-				}
-			}
-			time.Sleep(100 * time.Millisecond)
 		}
+	}()
+
+	// Handle layout items
+	for i, item := range t.layoutItems {
+		go func(idx int, menuItem *systray.MenuItem) {
+			for range menuItem.ClickedCh {
+				t.selectLayout(t.availableLayouts[idx])
+			}
+		}(i, item)
+	}
+
+	// Handle quit - this one blocks
+	for range quitItem.ClickedCh {
+		t.logger.Info("quit clicked")
+		if t.onQuit != nil {
+			t.onQuit()
+		}
+		systray.Quit()
+		return
 	}
 }
 
 // toggleEnabled toggles the enabled state.
 func (t *Tray) toggleEnabled() {
+	t.logger.Info("toggleEnabled called", "current", t.enabled)
 	t.enabled = !t.enabled
 
 	if t.enabled {
