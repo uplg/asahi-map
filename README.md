@@ -219,3 +219,5 @@ MIT License
 ## Credits
 
 Inspired by [Toshy](https://github.com/RedBearAK/toshy) but reimplemented in Go for efficiency.
+
+Made with {[❤️]} for Asahi users!
