@@ -117,11 +117,11 @@ alt:
 shift_alt:
   # Number row
   "grave":
-    passthrough: "grave"  # ÿ ydiaeresis (Shift+Option+@)
+    passthrough: "grave"  # Ÿ Ydiaeresis (Shift+Option+@)
   "1":
     passthrough: "1"  # ´ dead_acute (Shift+Option+1)
   "2":
-    passthrough: "2"  # É Eacute (Shift+Option+é)
+    passthrough: "2"  # „ doublelowquotemark (Shift+Option+é)
   "3":
     passthrough: "3"  # " rightdoublequotemark (Shift+Option+")
   "4":
