@@ -23,6 +23,7 @@ type Tray struct {
 
 	// Menu items for updates
 	statusItem  *systray.MenuItem
+	layoutMenu  *systray.MenuItem
 	layoutItems []*systray.MenuItem
 }
 
@@ -66,17 +67,14 @@ func (t *Tray) onReady() {
 	systray.AddSeparator()
 
 	// Layout submenu
-	layoutMenu := systray.AddMenuItem("Layout", "Select keyboard layout")
+	t.layoutMenu = systray.AddMenuItem(t.currentLayout+"    ", "Select keyboard layout")
 	t.layoutItems = make([]*systray.MenuItem, len(t.availableLayouts))
 
 	for i, layout := range t.availableLayouts {
-		label := layout
+		t.layoutItems[i] = t.layoutMenu.AddSubMenuItem(layout, "Switch to "+layout)
 		if layout == t.currentLayout {
-			label = "● " + layout
-		} else {
-			label = "  " + layout
+			t.layoutItems[i].Check()
 		}
-		t.layoutItems[i] = layoutMenu.AddSubMenuItem(label, "Switch to "+layout)
 	}
 
 	systray.AddSeparator()
@@ -139,20 +137,25 @@ func (t *Tray) toggleEnabled() {
 
 // selectLayout changes the current layout.
 func (t *Tray) selectLayout(layout string) {
+	t.logger.Info("selectLayout called", "requested", layout, "current", t.currentLayout)
+	
 	if layout == t.currentLayout {
+		t.logger.Info("layout already selected, skipping")
 		return
 	}
 
-	// Update menu labels
+	// Update menu checkmarks
 	for i, l := range t.availableLayouts {
 		if l == layout {
-			t.layoutItems[i].SetTitle("● " + l)
+			t.logger.Debug("checking layout", "layout", l, "index", i)
+			t.layoutItems[i].Check()
 		} else {
-			t.layoutItems[i].SetTitle("  " + l)
+			t.layoutItems[i].Uncheck()
 		}
 	}
 
 	t.currentLayout = layout
+	t.layoutMenu.SetTitle(layout + "    ")
 	t.updateTooltip()
 	t.logger.Info("layout changed", "layout", layout)
 

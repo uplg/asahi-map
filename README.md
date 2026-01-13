@@ -6,6 +6,7 @@ A lightweight Go application for handling macOS Option key shortcuts on Linux. D
 
 - 🎹 **macOS-style Option key shortcuts** - Type special characters like on macOS
 - 🇫🇷 **AZERTY Mac layout** - Full French keyboard support with Option and Option+Shift mappings
+- 🇺🇸 **QWERTY Mac layout** - US keyboard support with all Option key characters
 - 🖥️ **System tray integration** - Status icon and layout switching via fyne.io/systray
 - ⚡ **Lightweight** - Written in Go for minimal memory usage (~5 MB)
 - 🔧 **Configurable** - YAML-based configuration files
@@ -15,6 +16,7 @@ A lightweight Go application for handling macOS Option key shortcuts on Linux. D
 
 - Linux with evdev support (Asahi Linux / Fedora)
 - Root access or `input` group membership
+- Proper XKB layout with AltGr (3rd level) support (see [Keyboard Setup](#keyboard-setup))
 
 ## Installation
 
@@ -35,6 +37,61 @@ sudo ./install.sh
 sudo usermod -aG input $USER
 
 # Logout and login again for changes to take effect
+```
+
+## Keyboard Setup
+
+Asahi-Map uses **AltGr passthrough** to leverage your system's XKB layout. You need to configure your keyboard layout properly for the special characters to work.
+
+> ⚠️ **Important:** The Asahi-Map layout **must match** your system's XKB layout!
+> - System in `fr(mac)` → use `azerty-mac` in Asahi-Map
+> - System in `us(mac)` → use `qwerty-mac` in Asahi-Map
+>
+> Asahi-Map only intercepts Left Alt and converts it to Right Alt (AltGr). The actual character produced depends on your **system's XKB layout**, not Asahi-Map's layout selection.
+
+Adding layout is not needed if the correct one was defined at install.
+
+
+### AZERTY Mac (FR)
+
+Use the `fr(mac)` layout:
+
+**KDE:** Settings → Keyboard → Layouts → Add → French (Macintosh)
+
+**GNOME:**
+```bash
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'fr+mac')]"
+```
+
+**Manual configuration (`~/.config/kxkbrc` for KDE):**
+```ini
+[Layout]
+LayoutList=fr
+VariantList=mac
+Model=applealu_iso
+Use=true
+```
+
+### QWERTY Mac (US)
+
+Use the `us(mac)` layout:
+
+![KDE Keyboard Configuration](tutorial/config-kde.png)
+
+**KDE:** Settings → Keyboard → Layouts → Add → English (US) (Macintosh)
+
+**GNOME:**
+```bash
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us+mac')]"
+```
+
+**Manual configuration (`~/.config/kxkbrc` for KDE):**
+```ini
+[Layout]
+LayoutList=us
+VariantList=mac
+Model=applealu_iso
+Use=true
 ```
 
 ## Usage

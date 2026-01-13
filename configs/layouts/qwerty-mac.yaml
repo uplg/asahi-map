@@ -1,0 +1,222 @@
+# QWERTY Mac Layout - US keyboard Option key mappings
+# Uses passthrough to AltGr (Right Alt) for maximum compatibility
+# Works on Wayland, X11, all applications including Firefox and terminals
+name: "QWERTY Mac"
+description: "US QWERTY keyboard for Mac - Option key special characters"
+
+# Alt (Option) + key mappings
+# Uses passthrough to send AltGr+key which works everywhere
+alt:
+  # Number row: ` 1 2 3 4 5 6 7 8 9 0 - =
+  "grave":
+    passthrough: "grave"  # dead_grave
+  "1":
+    passthrough: "1"  # ¡ exclamdown
+  "2":
+    passthrough: "2"  # ™ trademark
+  "3":
+    passthrough: "3"  # £ sterling
+  "4":
+    passthrough: "4"  # ¢ cent
+  "5":
+    passthrough: "5"  # ∞ infinity
+  "6":
+    passthrough: "6"  # § section
+  "7":
+    passthrough: "7"  # ¶ paragraph
+  "8":
+    passthrough: "8"  # • bullet
+  "9":
+    passthrough: "9"  # ª ordfeminine
+  "0":
+    passthrough: "0"  # º masculine
+  "minus":
+    passthrough: "minus"  # – endash
+  "equal":
+    passthrough: "equal"  # ≠ notequal
+
+  # Top letter row: Q W E R T Y U I O P [ ]
+  "q":
+    passthrough: "q"  # œ oe ligature
+  "w":
+    passthrough: "w"  # ∑ Greek sigma (sum)
+  "e":
+    passthrough: "e"  # dead acute accent
+  "r":
+    passthrough: "r"  # ® registered
+  "t":
+    passthrough: "t"  # † dagger
+  "y":
+    passthrough: "y"  # ¥ yen
+  "u":
+    passthrough: "u"  # dead diaeresis/umlaut
+  "i":
+    passthrough: "i"  # dead circumflex
+  "o":
+    passthrough: "o"  # ø oslash
+  "p":
+    passthrough: "p"  # π Greek pi
+  "leftbrace":
+    passthrough: "leftbrace"  # leftdoublequotemark
+  "rightbrace":
+    passthrough: "rightbrace"  # leftsinglequotemark
+
+  # Home row: A S D F G H J K L ; '
+  "a":
+    passthrough: "a"  # å aring
+  "s":
+    passthrough: "s"  # ß ssharp
+  "d":
+    passthrough: "d"  # ∂ Greek delta (partial)
+  "f":
+    passthrough: "f"  # ƒ function (florin)
+  "g":
+    passthrough: "g"  # © copyright
+  "h":
+    passthrough: "h"  # ˙ dot above
+  "j":
+    passthrough: "j"  # ∆ Greek Delta (increment)
+  "k":
+    passthrough: "k"  # ˚ ring above
+  "l":
+    passthrough: "l"  # ¬ notsign
+  "semicolon":
+    passthrough: "semicolon"  # … ellipsis
+  "apostrophe":
+    passthrough: "apostrophe"  # æ ae ligature
+
+  # Bottom row: Z X C V B N M , . /
+  "z":
+    passthrough: "z"  # Ω Greek Omega
+  "x":
+    passthrough: "x"  # ≈ approxequal
+  "c":
+    passthrough: "c"  # ç ccedilla
+  "v":
+    passthrough: "v"  # √ radical (square root)
+  "b":
+    passthrough: "b"  # ∫ integral
+  "n":
+    passthrough: "n"  # dead tilde
+  "m":
+    passthrough: "m"  # µ mu
+  "comma":
+    passthrough: "comma"  # ≤ lessequal
+  "dot":
+    passthrough: "dot"  # ≥ greaterequal
+  "slash":
+    passthrough: "slash"  # ÷ division
+
+  # Backslash key
+  "backslash":
+    passthrough: "backslash"  # guillemotleft
+
+  # Space
+  "space":
+    passthrough: "space"  # non-breaking space
+
+# Shift + Alt (Option) + key mappings
+shift_alt:
+  # Number row
+  "grave":
+    passthrough: "grave"  # grave accent
+  "1":
+    passthrough: "1"  # ⁄ fraction slash
+  "2":
+    passthrough: "2"  # € euro
+  "3":
+    passthrough: "3"  # ‹ single left angle quote
+  "4":
+    passthrough: "4"  # › single right angle quote
+  "5":
+    passthrough: "5"  # ﬁ fi ligature
+  "6":
+    passthrough: "6"  # ﬂ fl ligature
+  "7":
+    passthrough: "7"  # ‡ double dagger
+  "8":
+    passthrough: "8"  # ° degree
+  "9":
+    passthrough: "9"  # · middle dot
+  "0":
+    passthrough: "0"  # ‚ single low quotemark
+  "minus":
+    passthrough: "minus"  # — emdash
+  "equal":
+    passthrough: "equal"  # ± plusminus
+
+  # Top letter row
+  "q":
+    passthrough: "q"  # Œ OE ligature
+  "w":
+    passthrough: "w"  # „ double low quotemark
+  "e":
+    passthrough: "e"  # acute accent
+  "r":
+    passthrough: "r"  # ‰ permille
+  "t":
+    passthrough: "t"  # ˇ caron
+  "y":
+    passthrough: "y"  # Á Aacute
+  "u":
+    passthrough: "u"  # diaeresis
+  "i":
+    passthrough: "i"  # circumflex
+  "o":
+    passthrough: "o"  # Ø Oslash
+  "p":
+    passthrough: "p"  # ∏ Greek Pi (product)
+  "leftbrace":
+    passthrough: "leftbrace"  # rightdoublequotemark
+  "rightbrace":
+    passthrough: "rightbrace"  # rightsinglequotemark
+
+  # Home row
+  "a":
+    passthrough: "a"  # Å Aring
+  "s":
+    passthrough: "s"  # Í Iacute
+  "d":
+    passthrough: "d"  # Î Icircumflex
+  "f":
+    passthrough: "f"  # Ï Idiaeresis
+  "g":
+    passthrough: "g"  # ˝ double acute
+  "h":
+    passthrough: "h"  # Ó Oacute
+  "j":
+    passthrough: "j"  # Ô Ocircumflex
+  "k":
+    passthrough: "k"  # Apple logo (private use)
+  "l":
+    passthrough: "l"  # Ò Ograve
+  "semicolon":
+    passthrough: "semicolon"  # Ú Uacute
+  "apostrophe":
+    passthrough: "apostrophe"  # Æ AE ligature
+
+  # Bottom row
+  "z":
+    passthrough: "z"  # ¸ cedilla
+  "x":
+    passthrough: "x"  # ˛ ogonek
+  "c":
+    passthrough: "c"  # Ç Ccedilla
+  "v":
+    passthrough: "v"  # ◊ lozenge
+  "b":
+    passthrough: "b"  # ı dotless i
+  "n":
+    passthrough: "n"  # tilde
+  "m":
+    passthrough: "m"  # Â Acircumflex
+  "comma":
+    passthrough: "comma"  # ¯ macron
+  "dot":
+    passthrough: "dot"  # ˘ breve
+  "slash":
+    passthrough: "slash"  # ¿ questiondown
+
+  # Backslash key
+  "backslash":
+    passthrough: "backslash"  # guillemotright
