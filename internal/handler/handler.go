@@ -114,8 +114,8 @@ func (h *Handler) handleEvent(ev *keyboard.KeyEvent) error {
 	}
 
 	if !h.keyState.LeftAltPressed() {
-		if h.lookup.HasActiveDeadKey() {
-			return h.handleDeadKeyCombo(ev)
+		if lookup.HasActiveDeadKey() {
+			return h.handleDeadKeyCombo(ev, lookup)
 		}
 		h.logger.Debug("forwarding non-alt key press", "code", ev.Code, "key", keyName, "shift", h.keyState.ShiftPressed())
 		return h.vkb.ForwardEvent(ev.Code, ev.Value)
@@ -141,10 +141,10 @@ func (h *Handler) handleEvent(ev *keyboard.KeyEvent) error {
 	h.interceptedKeys[ev.Code] = true
 	h.mu.Unlock()
 
-	return h.executeMapping(mapping, ev.Code)
+	return h.executeMapping(mapping, ev.Code, lookup)
 }
 
-func (h *Handler) executeMapping(m *mappings.Mapping, keyCode uint16) error {
+func (h *Handler) executeMapping(m *mappings.Mapping, keyCode uint16, lookup *mappings.KeyLookup) error {
 	// Handle passthrough (e.g., Alt-5 -> RAlt-5 for {)
 	if m.Passthrough != "" {
 		passthroughCode, ok := mappings.NameToKeyCode[m.Passthrough]
@@ -163,7 +163,7 @@ func (h *Handler) executeMapping(m *mappings.Mapping, keyCode uint16) error {
 
 	// Handle dead key
 	if m.IsDeadKey {
-		h.lookup.SetDeadKey(m.DeadKeyID)
+		lookup.SetDeadKey(m.DeadKeyID)
 		// Also output the base accent character
 		if r, ok := m.GetOutput(); ok {
 			return h.vkb.TypeUnicode(r)
@@ -181,14 +181,14 @@ func (h *Handler) executeMapping(m *mappings.Mapping, keyCode uint16) error {
 }
 
 // handleDeadKeyCombo processes a key after a dead key.
-func (h *Handler) handleDeadKeyCombo(ev *keyboard.KeyEvent) error {
+func (h *Handler) handleDeadKeyCombo(ev *keyboard.KeyEvent, lookup *mappings.KeyLookup) error {
 	keyName, ok := mappings.KeyCodeToName[mappings.KeyCode(ev.Code)]
 	if !ok {
-		h.lookup.ClearDeadKey()
+		lookup.ClearDeadKey()
 		return h.vkb.ForwardEvent(ev.Code, ev.Value)
 	}
 
-	result, applied := h.lookup.ApplyDeadKey(keyName)
+	result, applied := lookup.ApplyDeadKey(keyName)
 	if applied {
 		h.mu.Lock()
 		h.interceptedKeys[ev.Code] = true
