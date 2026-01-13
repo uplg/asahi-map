@@ -153,8 +153,12 @@ func main() {
 	// Get available layouts for tray menu
 	availableLayouts, err := cfg.AvailableLayouts()
 	if err != nil {
-		logger.Warn("could not list layouts", "error", err)
-		availableLayouts = []string{cfg.Layout}
+		logger.Error("failed to list layouts", "error", err)
+		os.Exit(1)
+	}
+	if len(availableLayouts) == 0 {
+		logger.Error("no layouts found", "layoutDir", filepath.Join(cfg.ConfigDir, "layouts"))
+		os.Exit(1)
 	}
 
 	// Setup signal handling
