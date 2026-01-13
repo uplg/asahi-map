@@ -49,6 +49,8 @@ Asahi-Map uses **AltGr passthrough** to leverage your system's XKB layout. You n
 >
 > Asahi-Map only intercepts Left Alt and converts it to Right Alt (AltGr). The actual character produced depends on your **system's XKB layout**, not Asahi-Map's layout selection.
 
+As we are using the passthrough approach for QWERTY / AZERTY, it shouldn't have much impact to change the layout in asahi-app but it's required if you use more advanced mappings like char/codepoint.
+
 Adding layout is not needed if the correct one was defined at install.
 
 
