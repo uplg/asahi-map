@@ -9,18 +9,26 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-type Config struct {
+// ConfigData contains user-configurable settings from YAML.
+type ConfigData struct {
 	Layout         string `yaml:"layout"`
 	LogLevel       string `yaml:"log_level"`
 	KeyboardDevice string `yaml:"keyboard_device"`
-	ConfigDir      string `yaml:"-"`
+}
+
+// Config wraps ConfigData with runtime metadata.
+type Config struct {
+	ConfigData
+	ConfigDir string
 }
 
 func DefaultConfig() *Config {
 	return &Config{
-		Layout:         "azerty-mac",
-		LogLevel:       "info",
-		KeyboardDevice: "auto",
+		ConfigData: ConfigData{
+			Layout:         "azerty-mac",
+			LogLevel:       "info",
+			KeyboardDevice: "auto",
+		},
 	}
 }
 
@@ -55,7 +63,7 @@ func Load(configPath string) (*Config, error) {
 	var loadedPath string
 	for _, path := range searchPaths {
 		if data, err := os.ReadFile(path); err == nil {
-			if err := yaml.Unmarshal(data, cfg); err != nil {
+			if err := yaml.Unmarshal(data, &cfg.ConfigData); err != nil {
 				return nil, fmt.Errorf("parsing config %s: %w", path, err)
 			}
 			loadedPath = path
@@ -109,7 +117,7 @@ func (c *Config) Save() error {
 		return fmt.Errorf("creating config directory: %w", err)
 	}
 
-	data, err := yaml.Marshal(c)
+	data, err := yaml.Marshal(c.ConfigData)
 	if err != nil {
 		return fmt.Errorf("marshaling config: %w", err)
 	}
