@@ -99,7 +99,7 @@ alt:
   "b":
     passthrough: "b"  # ß ssharp (Option+B)
   "n":
-    passthrough: "n"  # ~ tilde (Option+N)
+    passthrough_shift: "n"  # ~ asciitilde (Option+N) - needs Shift+AltGr since AltGr+N is dead_tilde
   "m":
     passthrough: "m"  # ∞ infinity (Option+,)
   "comma":

@@ -12,12 +12,12 @@ import (
 
 // Handler processes keyboard events and applies mappings.
 type Handler struct {
-	mu            sync.RWMutex
-	lookup        *mappings.KeyLookup
-	vkb           *keyboard.VirtualKeyboard
-	keyState      *keyboard.KeyState
-	enabled       bool
-	logger        *slog.Logger
+	mu       sync.RWMutex
+	lookup   *mappings.KeyLookup
+	vkb      *keyboard.VirtualKeyboard
+	keyState *keyboard.KeyState
+	enabled  bool
+	logger   *slog.Logger
 
 	// Track keys we've intercepted to properly handle release
 	interceptedKeys map[uint16]bool
@@ -159,6 +159,20 @@ func (h *Handler) executeMapping(m *mappings.Mapping, keyCode uint16, lookup *ma
 			return h.vkb.PassthroughWithShiftRAlt(int(passthroughCode), true)
 		}
 		return h.vkb.PassthroughWithRAlt(int(passthroughCode))
+	}
+
+	// Handle passthrough with forced Shift (e.g., Alt-N -> Shift+RAlt-N for ~)
+	// Used when XKB layout has the desired character at level 4 (Shift+AltGr)
+	if m.PassthroughShift != "" {
+		passthroughCode, ok := mappings.NameToKeyCode[m.PassthroughShift]
+		if !ok {
+			h.logger.Warn("unknown passthrough_shift key", "key", m.PassthroughShift)
+			return nil
+		}
+		shiftPressed := h.keyState.ShiftPressed()
+		h.logger.Debug("passthrough_shift", "from", keyCode, "to", m.PassthroughShift, "toCode", passthroughCode, "userShift", shiftPressed)
+		// Always send with Shift, pass shiftPressed to indicate if user was already holding it
+		return h.vkb.PassthroughWithShiftRAlt(int(passthroughCode), shiftPressed)
 	}
 
 	// Handle dead key

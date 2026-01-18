@@ -138,7 +138,7 @@ func (t *Tray) toggleEnabled() {
 // selectLayout changes the current layout.
 func (t *Tray) selectLayout(layout string) {
 	t.logger.Info("selectLayout called", "requested", layout, "current", t.currentLayout)
-	
+
 	if layout == t.currentLayout {
 		t.logger.Info("layout already selected, skipping")
 		return

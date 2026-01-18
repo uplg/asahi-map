@@ -35,6 +35,10 @@ type Mapping struct {
 
 	// For key pass-through (e.g., Alt-5 -> RAlt-5 for {)
 	Passthrough string `yaml:"passthrough,omitempty"`
+
+	// For key pass-through with Shift (e.g., Alt-N -> Shift+RAlt-N for ~)
+	// Used when the XKB layout has the desired character at level 4 (Shift+AltGr)
+	PassthroughShift string `yaml:"passthrough_shift,omitempty"`
 }
 
 // DeadKey represents a dead key accent that combines with the next character.
