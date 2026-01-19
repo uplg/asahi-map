@@ -40,8 +40,37 @@ mkdir -p /etc/asahi-map/layouts
 
 # Install config files
 echo "Installing configuration files..."
-cp configs/config.yaml /etc/asahi-map/
-cp configs/layouts/*.yaml /etc/asahi-map/layouts/
+CONFIG_DIR="/etc/asahi-map"
+
+# Install config.yaml with prompt
+if [ -f "$CONFIG_DIR/config.yaml" ]; then
+    read -p "config.yaml already exists. Replace? (y/n) " yn
+    case $yn in
+        [Yy]*) cp configs/config.yaml "$CONFIG_DIR"; echo "Replaced config.yaml";;
+        *) echo "Skipped config.yaml replacement";;
+    esac
+else
+    cp configs/config.yaml "$CONFIG_DIR"
+    echo "Installed config.yaml"
+fi
+
+# Install layouts with prompt per file
+for file in configs/layouts/*.yaml; do
+    base=$(basename "$file")
+    target="$CONFIG_DIR/layouts/$base"
+
+    if [ -f "$target" ]; then
+        read -p "$base already exists. Replace? (y/n) " yn
+        case $yn in
+            [Yy]*) cp "$file" "$CONFIG_DIR/layouts"; echo "Replaced $base";;
+            *) echo "Skipped $base replacement";;
+        esac
+    else
+        cp "$file" "$CONFIG_DIR/layouts"
+        echo "Installed $base"
+    fi
+done
+
 
 # Create systemd user service (without tray, for headless/service mode)
 echo "Creating systemd user service..."
