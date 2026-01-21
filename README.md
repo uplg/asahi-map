@@ -28,6 +28,8 @@ go build -ldflags="-s -w" -o asahi-map ./cmd/asahi-map
 
 # Install
 sudo ./install.sh
+
+# Log out + login back, asahi-map systray should be there.
 ```
 
 ### Setup permissions
@@ -37,6 +39,12 @@ sudo ./install.sh
 sudo usermod -aG input $USER
 
 # Logout and login again for changes to take effect
+```
+
+## Uninstall
+
+```bash
+sudo ./uninstall.sh
 ```
 
 ## Keyboard Setup
