@@ -41,6 +41,16 @@ sudo usermod -aG input $USER
 # Logout and login again for changes to take effect
 ```
 
+## Upgrade
+
+```bash
+git pull
+sudo ./install.sh
+
+# script will prompt you if there is any changes in native configs and ask for a replace
+```
+
+
 ## Uninstall
 
 ```bash
