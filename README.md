@@ -20,6 +20,13 @@ A lightweight Go application for handling macOS Option key shortcuts on Linux. D
 
 ## Installation
 
+### Setup permissions
+
+```bash
+# Add your user to the input group (to be able to grab keyboard device)
+sudo usermod -aG input $USER
+```
+
 ### From source
 
 ```bash
@@ -30,15 +37,6 @@ go build -ldflags="-s -w" -o asahi-map ./cmd/asahi-map
 sudo ./install.sh
 
 # Log out + login back, asahi-map systray should be there.
-```
-
-### Setup permissions
-
-```bash
-# Add your user to the input group
-sudo usermod -aG input $USER
-
-# Logout and login again for changes to take effect
 ```
 
 ## Upgrade
